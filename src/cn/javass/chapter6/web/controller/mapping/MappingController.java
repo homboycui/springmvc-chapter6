@@ -15,7 +15,7 @@ public class MappingController {
         System.out.println("/test1  or /user/create  matches");
         return "mappingSuccess";
     }
-    //普通URL路径映射    
+    //普通URL路径映射    测试：http://localhost:8080/chapter6/users/zhangsan/topics/007
     @RequestMapping(value="/users/{userId}/topics/{topicId}")
     public String test12() {
         System.out.println("/users/{userId}/topics/{topicId} matches");

@@ -12,6 +12,11 @@ public class RequestMethodController {
         System.out.println("===============GET");
         return "customer/create";        
     }
+    @RequestMapping(value="/create2", method = RequestMethod.GET)  //②进行类级别的@RequestMapping窄化
+    public String showForm2() {
+        System.out.println("===============GET2");
+        return "customer/methodOr";
+    }
     @RequestMapping(value="/create", method = RequestMethod.POST) //③进行类级别的@RequestMapping窄化
     public String submit() {
         System.out.println("================POST");
