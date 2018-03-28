@@ -19,6 +19,7 @@ public class ConsumesController {
     public String test(HttpServletRequest request) throws IOException {
         //表示请求的内容区数据为json数据
         InputStream is = request.getInputStream();
+        int contentLength = request.getContentLength();
         byte bytes[] = new byte[request.getContentLength()];
         is.read(bytes);
         //得到请求中的内容区数据（以CharacterEncoding解码）

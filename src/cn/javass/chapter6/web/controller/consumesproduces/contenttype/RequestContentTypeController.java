@@ -35,6 +35,7 @@ public class RequestContentTypeController {
         //③表示请求的内容区数据为form表单提交的参数，此时我们可以通过request.getParameter得到数据（key=value）
         System.out.println(request.getParameter("realname"));
         System.out.println(request.getParameter("username"));
+        System.out.println(request.getParameter("password"));
         return "success";
         
     }

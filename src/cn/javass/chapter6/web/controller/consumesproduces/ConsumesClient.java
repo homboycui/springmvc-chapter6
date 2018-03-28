@@ -14,7 +14,7 @@ public class ConsumesClient {
     public static void main(String[] args) throws IOException, URISyntaxException {
         
         //请求的地址
-        String url = "http://localhost:9080/springmvc-chapter6/consumes";
+        String url = "http://localhost:8080/chapter6/consumes";
         
         //①创建Http Request(内部使用HttpURLConnection)
         ClientHttpRequest request = 

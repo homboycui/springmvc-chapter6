@@ -56,6 +56,9 @@ public class RequestParamController {
     
     @RequestMapping("/requestparam7")
     public String requestparam7(@RequestParam(value="role") String[] roleList) {
+        for (int i=0;i<roleList.length;i++) {
+            System.out.println("====>>role[" + i + "]=" + roleList[i]);
+        }
         System.out.println(Arrays.toString(roleList));
         return "success";
     }

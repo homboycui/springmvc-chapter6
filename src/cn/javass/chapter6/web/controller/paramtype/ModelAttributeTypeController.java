@@ -15,15 +15,23 @@ import cn.javass.chapter6.model.DataBinderTestModel;
 import cn.javass.chapter6.model.UserModel;
 
 
+/**
+ * ①和②有同名的命令对象，那 Spring Web MVC 内部如何处理的呢：
+ * (1、首先执行@ModelAttribute 注解的方法，准备视图展示时所需要的模型数据；@ModelAttribute 注解方法形式参数规则和@RequestMapping 规则一样，如可以有@RequestParam 等；
+ * (2、执行@RequestMapping 注解方法，进行模型绑定时首先查找模型数据中是否含有同名对象，如果有直接使用，如果没有通过反射创建一个，因此②处的 user 将使用①处返回的命令对象。即②处的 user 等于①处的 user。
+ * */
 @Controller
 @RequestMapping("/method/param/annotation")
 public class ModelAttributeTypeController {
-    
+//    二、暴露表单引用对象为模型数据
+    /**代码会在执行功能处理方法之前执行，并将其自动添加到模型对象中在功能处理方法中
+     * 调用 Model 入参的containsAttribute("cityList")将会返回 true
+     */
     @ModelAttribute("cityList")
     public List<String> cityList() {
         return Arrays.asList("北京", "山东");
     }
-    
+
     @ModelAttribute("user")  //①
     public UserModel getUser(@RequestParam(value="username", defaultValue="") String username) {
         //TODO 去数据库根据用户名查找用户对象
@@ -32,7 +40,7 @@ public class ModelAttributeTypeController {
         return user;
     }
 
-    
+//    一、绑定请求参数到命令对象
     @RequestMapping(value="/model1") //②
     public String test1(@ModelAttribute("user") UserModel user, Model model) {
         System.out.println(model.containsAttribute("cityList"));
@@ -40,14 +48,14 @@ public class ModelAttributeTypeController {
         return "success";
     }
     
-    //http://localhost:9080/springmvc-chapter6/method/param/annotation/model2/username=wang?username=zhang&bool=yes&schooInfo.specialty=computer&hobbyList[0]=program&hobbyList[1]=music&map[key1]=value1&map[key2]=value2&state=blocked
+//    http://localhost:8080/springmvc-chapter6/method/param/annotation/model2/username=wang?username=zhang&bool=yes&schooInfo.specialty=computer&hobbyList[0]=program&hobbyList[1]=music&map[key1]=value1&map[key2]=value2&state=blocked
     @RequestMapping(value="/model2/{username}")
     public String test2(@ModelAttribute("model") DataBinderTestModel model) {
         System.out.println(model);
         return "success";
     }
-    
-    
+
+//    三、暴露@RequestMapping 方法返回值为模型数据
     @RequestMapping(value="/model3")
     public @ModelAttribute("user2") UserModel test3(@ModelAttribute("user2") UserModel user) {
         UserModel user2 = new UserModel();

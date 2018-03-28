@@ -86,7 +86,7 @@ public class MethodParamTypeController {
         System.out.println(user);
         return "success";
     }
-    
+    /*Model model,Map model2,ModelMap model3都是同一个BindingAwareModelMap实例*/
     @RequestMapping(value = "/model")
     public String createUser(Model model, Map model2, ModelMap model3) {
         model.addAttribute("a", "a");
@@ -110,22 +110,31 @@ public class MethodParamTypeController {
     
     @RequestMapping(value = "/error1")
     public String error1(UserModel user, BindingResult result) {
+        System.out.println("=====>>result:" + result.toString());
         return "success";
     }
     
     @RequestMapping(value = "/error2")
     public String error2(UserModel user, BindingResult result, Model model) {
+        System.out.println("====>>user:" + user.toString());
+        System.out.println("====>>result:" + result.toString());
+        System.out.println("====>>model:" + model.toString());
         return "success";
     }
     
     @RequestMapping(value = "/error3")
     public String error3(UserModel user, Errors errors) {
+        System.out.println("====>>user:" + user.toString());
+        System.out.println("====>>errors:" + errors.toString());
         return "success";
     }
     //如下代码在spring3.1之前将抛出"Errors/BindingResult argument declared without preceding model attribute."异常
     //而spring3.1开始如下代码能正常工作
     @RequestMapping(value = "/error4")
     public String error4(UserModel user, Model model, Errors errors) {
+        System.out.println("====>>user:" + user.toString());
+        System.out.println("====>>model:" + model.toString());
+        System.out.println("====>>errors:" + errors.toString());
         return "success";
     }
     
