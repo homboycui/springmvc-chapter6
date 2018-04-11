@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import cn.javass.chapter6.model.SchoolInfoModel;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -15,7 +16,8 @@ import cn.javass.chapter6.model.DataBinderTestModel;
 import cn.javass.chapter6.model.UserModel;
 
 
-/**
+/**@ModelAttribute 用法： 绑定请求参数到命令对象
+ *
  * ①和②有同名的命令对象，那 Spring Web MVC 内部如何处理的呢：
  * (1、首先执行@ModelAttribute 注解的方法，准备视图展示时所需要的模型数据；@ModelAttribute 注解方法形式参数规则和@RequestMapping 规则一样，如可以有@RequestParam 等；
  * (2、执行@RequestMapping 注解方法，进行模型绑定时首先查找模型数据中是否含有同名对象，如果有直接使用，如果没有通过反射创建一个，因此②处的 user 将使用①处返回的命令对象。即②处的 user 等于①处的 user。
@@ -23,7 +25,8 @@ import cn.javass.chapter6.model.UserModel;
 @Controller
 @RequestMapping("/method/param/annotation")
 public class ModelAttributeTypeController {
-//    二、暴露表单引用对象为模型数据
+
+//   ModelAttribute： 二、暴露表单引用对象为模型数据
     /**代码会在执行功能处理方法之前执行，并将其自动添加到模型对象中在功能处理方法中
      * 调用 Model 入参的containsAttribute("cityList")将会返回 true
      */
@@ -36,11 +39,12 @@ public class ModelAttributeTypeController {
     public UserModel getUser(@RequestParam(value="username", defaultValue="") String username) {
         //TODO 去数据库根据用户名查找用户对象
         UserModel user = new UserModel();
+        user.setUsername("bryant");
         user.setRealname("zhang");
         return user;
     }
 
-//    一、绑定请求参数到命令对象
+//  ModelAttribute：  一、绑定请求参数到命令对象
     @RequestMapping(value="/model1") //②
     public String test1(@ModelAttribute("user") UserModel user, Model model) {
         System.out.println(model.containsAttribute("cityList"));
@@ -59,7 +63,10 @@ public class ModelAttributeTypeController {
     @RequestMapping(value="/model3")
     public @ModelAttribute("user2") UserModel test3(@ModelAttribute("user2") UserModel user) {
         UserModel user2 = new UserModel();
-        user2.setUsername("zhang");
+        user2.setUsername("rose");
+        user2.setPassword("123456");
+        user2.setRealname("zhang");
+        user2.setSchoolInfo(new SchoolInfoModel("Tsinghua","University","Software"));
         return user2;
     }
 

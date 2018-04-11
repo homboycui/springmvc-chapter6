@@ -6,7 +6,12 @@
 <title>成功</title>
 </head>
 <body>
-成功
-${a}${b}${c}${user.username }${cityList}
+成功 <br>
+a:${a} <br>
+b:${b} <br>
+c:${c} <br>
+username:${user.username } <br>
+cityList:${cityList} <br>
+username2:${username}
 </body>
 </html>
