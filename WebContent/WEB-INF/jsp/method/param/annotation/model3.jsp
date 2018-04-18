@@ -35,13 +35,31 @@
 <span class="aaa">requestPathWithParams: </span>${requestPathWithParams} <br> <br>
 <%--TODO 获取请求相对路径 2018-04-11 16:21--%>
 
+<span class="bbb">user:</span><br>
+username:${user.username } <br>
+realname:${user.realname } <br>
+schoolInfo:${user.schoolInfo.schoolName} ${user.schoolInfo.schoolType} ${user.schoolInfo.specialty} <br>
+<hr>
+
+<span class="bbb">user2:</span><br>
 username:${user2.username } <br>
+realname:${user2.realname } <br>
 schoolInfo:${user2.schoolInfo.schoolName} ${user2.schoolInfo.schoolType} ${user2.schoolInfo.specialty} <br>
+
+<hr>
+<span class="bbb">user3:</span><br>
+username:${user3.username } <br>
+realname:${user3.realname } <br>
+schoolInfo:${user3.schoolInfo.schoolName} ${user3.schoolInfo.schoolType} ${user3.schoolInfo.specialty} <br>
 
 
 <style>
     .aaa{
         color: green;
+        font-weight:bold;
+    }
+    .bbb{
+        color: red;
         font-weight:bold;
     }
 </style>

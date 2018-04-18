@@ -12,6 +12,7 @@ b:${b} <br>
 c:${c} <br>
 username:${user.username } <br>
 cityList:${cityList} <br>
-username2:${username}
+username2:${username} <br>
+userModel:${userModel.username} <br>
 </body>
 </html>

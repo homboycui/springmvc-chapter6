@@ -61,19 +61,27 @@ public class ModelAttributeTypeController {
 
 //    三、暴露@RequestMapping 方法返回值为模型数据
     @RequestMapping(value="/model3")
-    public @ModelAttribute("user2") UserModel test3(@ModelAttribute("user2") UserModel user) {
+    public @ModelAttribute("user3") UserModel test3(@ModelAttribute("user2") UserModel user) {
+
+        user.setUsername("鳌拜");
+        user.setPassword("888888");
+        user.setRealname("苏完瓜尔佳氏");
+
         UserModel user2 = new UserModel();
         user2.setUsername("rose");
         user2.setPassword("123456");
         user2.setRealname("zhang");
         user2.setSchoolInfo(new SchoolInfoModel("Tsinghua","University","Software"));
+
+//        return user;
         return user2;
     }
 
     
     @RequestMapping(value="/model4")
-    public String test4(@ModelAttribute UserModel user, Model model) {
+    public String test4(@ModelAttribute UserModel user4, Model model) {
         System.out.println(model.containsAttribute("userModel"));
+        System.out.println(model.containsAttribute("user4"));
         return "success";
     }
     @RequestMapping(value="/model5")
@@ -92,6 +100,12 @@ public class ModelAttributeTypeController {
     
     @RequestMapping(value="/model8")
     public @ModelAttribute Map<String, UserModel> test8() {
-        return new HashMap<String, UserModel>();
+        HashMap map1 = new HashMap<String, UserModel>();
+        UserModel user8 = new UserModel();
+        user8.setUsername("hahaha");
+        user8.setPassword("111111");
+        user8.setRealname("hehehe");
+        map1.put("user8",user8);
+        return map1 ;
     }
 }
