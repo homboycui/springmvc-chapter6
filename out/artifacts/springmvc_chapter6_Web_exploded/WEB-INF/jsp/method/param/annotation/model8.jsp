@@ -6,6 +6,8 @@
 <title>成功</title>
 </head>
 <body>
-${map}
+${map}<br>
+${map.user8.username}
+
 </body>
 </html>

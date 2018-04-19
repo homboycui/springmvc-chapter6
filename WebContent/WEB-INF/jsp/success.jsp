@@ -10,9 +10,14 @@
 a:${a} <br>
 b:${b} <br>
 c:${c} <br>
-username:${user.username } <br>
+user.username:${user.username } <br>
 cityList:${cityList} <br>
 username2:${username} <br>
 userModel:${userModel.username} <br>
+
+user2.username:${user2.username } <br>
+
+
+
 </body>
 </html>

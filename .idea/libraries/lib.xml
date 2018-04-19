@@ -5,7 +5,9 @@
       <root url="file://$PROJECT_DIR$/lib" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/WebContent/WEB-INF/lib/org.springframework.web-3.1.1.RELEASE.jar!/" />
+    </SOURCES>
     <jarDirectory url="file://$PROJECT_DIR$/lib" recursive="false" />
     <jarDirectory url="file://$PROJECT_DIR$/WebContent/WEB-INF/lib" recursive="false" />
   </library>

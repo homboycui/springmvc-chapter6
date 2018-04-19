@@ -19,12 +19,14 @@ public class SessionAttributeController {
     //2、@ModelAttribute注解的方法 进行表单引用对象的创建
     @ModelAttribute("user")    //② 如果模型数据中没有名字为user的对象，调用该方法并存储到模型数据中
     public UserModel initUser() {
-        return new UserModel();
+        UserModel user666 = new UserModel();
+        user666.setUsername("白展堂");
+        return user666;
     }
     //3、@RequestMapping注解方法的 @ModelAttribute注解的参数进行命令对象的绑定
     @RequestMapping("/session1")   //③ 首先查找模型数据中是否有user对象，有直接使用，没有则创建一个，并将请求参数绑定到该对象上
-    public String session1(@ModelAttribute("user") UserModel user, ModelMap model, WebRequest request, SessionStatus status) {
-        System.out.println(user == model.get("user"));
+    public String session1(@ModelAttribute("user2") UserModel user, ModelMap model, WebRequest request, SessionStatus status) {
+        System.out.println(user == model.get("user2"));
         user.setUsername("zhang");
         return "success";
     }
@@ -34,7 +36,8 @@ public class SessionAttributeController {
         System.out.println(user == request.getAttribute("user", WebRequest.SCOPE_SESSION));
         System.out.println(user == model.get("user"));
         System.out.println(user);
-        if(true) { //④如果会话可以终止了，就 标识会话结束，可以清理掉会话数据了
+        /*缓存中有user时才进行清理*/
+        if(user == request.getAttribute("user", WebRequest.SCOPE_SESSION)) { //④如果会话可以终止了，就 标识会话结束，可以清理掉会话数据了
             status.setComplete();
         }
         return "success";
